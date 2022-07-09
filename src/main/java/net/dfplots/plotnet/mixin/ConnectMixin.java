@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 // Mixins HAVE to be written in java due to constraints in the mixin system.
 public class ConnectMixin {
     @Inject(at = @At("HEAD"), method = "connect(Lnet/minecraft/client/network/ServerInfo;)V")
-    private void init(ServerInfo serverInfo, CallbackInfo info) {
+    private void connect(ServerInfo serverInfo, CallbackInfo info) {
         PlotNet.logConnection(serverInfo.address);
 
         serverInfo.address = "mcdiamondfire.net";
