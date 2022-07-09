@@ -17,11 +17,6 @@
   "icon": "assets/plotnet/icon.png",
 
   "environment": "*",
-  "entrypoints": {
-    "main": [
-      "net.dfplots.plotnet.ExampleModKt::init"
-    ]
-  },
   "mixins": [
     "modid.mixins.json"
   ],
