@@ -17,13 +17,21 @@ public class PlotNet {
 	private static boolean sent = false;
 	private static Integer id = null;
 
-	public static void logConnection(String ip) {
+	public static Optional<Integer> getID(String ip) {
 		String[] parts = ip.split("\\.");
 		if (parts.length == 3 && parts[1].equals("mcdiamondfire") && parts[2].equals("net")) {
 			try {
-				id = Integer.parseInt(parts[0]);
-			} catch (NumberFormatException ignored) {} // for ie node1.mcdiamondfire.net
+				return Optional.of(Integer.parseInt(parts[0])); // for ie node1.mcdiamondfire.net
+			} catch (NumberFormatException ignored) {
+				return Optional.empty();
+			}
 		}
+		return Optional.empty();
+	}
+
+	public static void logConnection(String ip) {
+		Optional<Integer> maybeID = getID(ip);
+		maybeID.ifPresent(foundID -> id = foundID);
 		sent = false;
 	}
 
