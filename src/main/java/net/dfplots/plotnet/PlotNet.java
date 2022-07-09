@@ -6,25 +6,22 @@ import net.minecraft.client.network.ClientPlayerEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class PlotNet implements ModInitializer {
+import java.util.Optional;
+
+public class PlotNet {
 	// This logger is used to write text to the console and the log file.
 	// It is considered best practice to use your mod id as the logger's name.
 	// That way, it's clear which mod wrote info, warnings, and errors.
 	public static final Logger LOGGER = LoggerFactory.getLogger("plotnet");
 
 	private static boolean sent = false;
-
-	@Override
-	public void onInitialize() {
-		// This code runs as soon as Minecraft is in a mod-load-ready state.
-		// However, some things (like resources) may still be uninitialized.
-		// Proceed with mild caution.
-
-		LOGGER.info("Hello Fabric world!");
-	}
+	private static Integer id = null;
 
 	public static void logConnection(String ip) {
-		System.out.println(ip);
+		String[] parts = ip.split("\\.");
+		if (parts.length == 3 && parts[1].equals("mcdiamondfire") && parts[2].equals("net")) {
+			id = Integer.parseInt(parts[0]);
+		}
 		sent = false;
 	}
 
@@ -32,10 +29,11 @@ public class PlotNet implements ModInitializer {
 		ClientPlayerEntity player = MinecraftClient.getInstance().player;
 
 		if (player != null && !sent) {
-			player.sendCommand("help");
 			sent = true;
+
+			if (id != null) {
+				player.sendCommand(String.format("join %d", id));
+			}
 		}
-
-
 	}
 }
