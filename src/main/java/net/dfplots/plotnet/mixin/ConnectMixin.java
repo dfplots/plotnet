@@ -14,5 +14,7 @@ public class ConnectMixin {
     @Inject(at = @At("HEAD"), method = "connect(Lnet/minecraft/client/network/ServerInfo;)V")
     private void init(ServerInfo serverInfo, CallbackInfo info) {
         PlotNet.logConnection(serverInfo.address);
+
+        serverInfo.address = "mcdiamondfire.net";
     }
 }
