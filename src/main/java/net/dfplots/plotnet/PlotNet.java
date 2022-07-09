@@ -20,7 +20,9 @@ public class PlotNet {
 	public static void logConnection(String ip) {
 		String[] parts = ip.split("\\.");
 		if (parts.length == 3 && parts[1].equals("mcdiamondfire") && parts[2].equals("net")) {
-			id = Integer.parseInt(parts[0]);
+			try {
+				id = Integer.parseInt(parts[0]);
+			} catch (NumberFormatException ignored) {} // for ie node1.mcdiamondfire.net
 		}
 		sent = false;
 	}
