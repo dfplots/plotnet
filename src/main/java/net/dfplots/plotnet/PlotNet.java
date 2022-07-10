@@ -30,8 +30,7 @@ public class PlotNet {
 	}
 
 	public static void logConnection(String ip) {
-		Optional<Integer> maybeID = getID(ip);
-		maybeID.ifPresent(foundID -> id = foundID);
+		getID(ip).ifPresent(foundID -> id = foundID);
 		sent = false;
 	}
 
