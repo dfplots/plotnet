@@ -1,0 +1,43 @@
+00000 - 10147 | N1 Basic
+10148 - 11299 | N1 Large
+11300 - 11330 | N1 Massive
+11331 - 21030 | N2 Basic
+21031 - 22422 | N2 Large
+22423 - 22639 | N2 Massive
+22640 - 23939 | N1 Basic (Empty)
+23940 - 24939 | N2 Basic (Empty)
+24940 - 25539 | N1 Basic (Empty)
+25540 - 25603 | N1 Massive
+25604 - 26303 | N1 Basic (Empty)
+26304 - 27403 | N2 Basic (Empty)
+27404 - 27499 | N2 Large
+27500 - 27579 | N2 Massive
+27580 - 27598 | N3 Basic
+27599 - 27601 | Unallocated (Invalid)
+27602 - 37726 | N3 Basic
+37727 - 38878 | N3 Large
+38879 - 38909 | N3 Massive
+38910 - 41573 | N3 Basic
+41574 - 41738 | N3 Massive
+41739 - 41760 | Unallocated (Invalid)
+41761 - 41898 | N2 Massive
+41899         | Unallocated (Invalid)
+41900 - 41910 | N2 Massive
+41911 - 41917 | Unallocated (Invalid)
+41918 - 41920 | N2 Massive
+41921 - 42250 | N1 Massive
+42251 - 42346 | N2 Massive
+42347 - 43246 | N4 Massive
+43247 - 44471 | N4 Large
+44472 - 46496 | N4 Basic
+46497 - 50000 | Unallocated (Invalid)
+
+Some categories were probably missed.
+For example, I stumbled upon range 25540-25603 because a N1 spawn is there.
+I certainly missed some small groups of unallocated IDs,
+especially singular ones like poor 41899 (maybe a glitched plot there).
+
+For N5-N7 (Nx):
+x0001 - x0900 | Nx Massive
+x0901 - x2125 | Nx Large
+x2126 - x???? | Nx Basic

@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Optional;
+import java.util.OptionalInt;
 
 public class PlotNet {
 	// This logger is used to write text to the console and the log file.
@@ -17,16 +18,16 @@ public class PlotNet {
 	private static boolean sent = false;
 	private static Integer id = null;
 
-	public static Optional<Integer> getID(String ip) {
+	public static OptionalInt getID(String ip) {
 		String[] parts = ip.split("\\.");
 		if (parts.length == 3 && parts[1].equals("mcdiamondfire") && parts[2].equals("net")) {
 			try {
-				return Optional.of(Integer.parseInt(parts[0])); // for ie node1.mcdiamondfire.net
+				return OptionalInt.of(Integer.parseInt(parts[0])); // for ie node1.mcdiamondfire.net
 			} catch (NumberFormatException ignored) {
-				return Optional.empty();
+				return OptionalInt.empty();
 			}
 		}
-		return Optional.empty();
+		return OptionalInt.empty();
 	}
 
 	public static void logConnection(String ip) {
@@ -44,5 +45,38 @@ public class PlotNet {
 				player.sendCommand(String.format("join %d", id));
 			}
 		}
+	}
+
+	public static int guessNode(int id) {
+		if (id <= 11330) return 1;
+
+		if (id <= 22639) return 2;
+
+		if (id <= 23939) return 1;
+
+		if (id <= 24939) return 2;
+
+		if (id <= 26303) return 1;
+
+		if (id <= 27579) return 2;
+
+		if (id <= 41738) return 3;
+
+		if (id <= 41920) return 2;
+
+		if (id <= 42250) return 1;
+
+		if (id <= 42346) return 2;
+
+		if (id < 50000) return 4;
+
+		if (id < 60000) return 5;
+
+		if (id < 70000) return 6;
+
+		if (id < 80000) return 7;
+
+		// should never reach here until they add node8!
+		return 1;
 	}
 }

@@ -8,6 +8,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.Optional;
+import java.util.OptionalInt;
+
 @Mixin(MultiplayerScreen.class)
 // Mixins HAVE to be written in java due to constraints in the mixin system.
 public class ConnectMixin {
@@ -15,6 +18,9 @@ public class ConnectMixin {
     private void connect(ServerInfo serverInfo, CallbackInfo info) {
         PlotNet.logConnection(serverInfo.address);
 
-        serverInfo.address = "mcdiamondfire.net";
+        OptionalInt id = PlotNet.getID(serverInfo.address);
+        if (id.isPresent()) {
+            serverInfo.address = String.format("node%d.mcdiamondfire.net", PlotNet.guessNode(id.getAsInt()));
+        }
     }
 }
